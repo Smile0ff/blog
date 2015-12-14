@@ -23,11 +23,11 @@ class ContactController extends Controller
 
         }
         else{
-
+           
         }
 
         return $this->render('AppBundle:Contact:contact.html.twig', [
-            "pageTitle" => $pageTitle,
+            'pageTitle' => $pageTitle,
             'feedback' => $form->createView()
         ]);
     }

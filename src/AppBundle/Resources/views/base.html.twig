@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Symfony Blog</title>
+    {% block css %}
+        <link href='https://fonts.googleapis.com/css?family=Droid+Sans|Open+Sans:400,600&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/common.css') }}">
+    {% endblock %}
+</head>
+<body>
+
+    <header id="header">
+        <nav id="menu-holder">
+            <ul>
+                <li class="{{ (app.request.attributes.get('_route') == 'home') ? 'active' : '' }}"><a href="{{ path('home') }}">Home</a></li>
+                <li class="{{ (app.request.attributes.get('_route') == 'about') ? 'active' : '' }}"><a href="{{ path('about') }}">About</a></li>
+                <li class="{{ (app.request.attributes.get('_route') == 'contact') ? 'active' : '' }}"><a href="{{ path('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main id="content">
+        {% block body %}{% endblock %}
+    </main>
+    <footer id="footer">
+         
+    </footer>
+
+    {% block js %}
+
+    {% endblock %}
+</body>
+</html>

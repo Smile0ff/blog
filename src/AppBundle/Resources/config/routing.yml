@@ -1,0 +1,16 @@
+# src/AppBundle/Resources/config/routing.yml
+
+home:
+    path: /
+    defaults: { _controller: AppBundle:Home:index }
+    methods: [GET]
+
+about:
+    path: /about
+    defaults: { _controller: AppBundle:About:index }
+    methods: [GET]
+
+contact:
+    path: /contact
+    defaults: { _controller: AppBundle:Contact:index }
+    methods: [GET, POST]

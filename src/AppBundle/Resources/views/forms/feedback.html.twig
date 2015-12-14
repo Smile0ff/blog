@@ -1,0 +1,31 @@
+{# src/AppBundle/Resources/views/forms/index.html.twig #}
+
+{% form_theme feedback 'AppBundle:Forms:fields.html.twig' %}
+
+{{ form_start(feedback, { 'attr': {'action': path('contact'), 'novalidate': 'novalidate'} }) }}
+    
+    <div {{ feedback.name.vars.valid ? '' : 'class="active"' }}>
+        {{ form_label(feedback.name, 'Your name') }}
+        {{ form_widget(feedback.name, { 'attr': {'placeholder': 'Enter your name  here'} }) }}
+        {{ form_errors(feedback.name) }}
+
+        
+    </div>
+    
+    <div>
+        {{ form_label(feedback.email, 'Your email') }}
+        {{ form_widget(feedback.email, { 'attr': {'placeholder': 'Enter your email  here'} }) }}
+        {{ form_errors(feedback.email) }}
+    </div>
+    
+    <div>
+        {{ form_label(feedback.message, 'Your message') }}
+        {{ form_widget(feedback.message, { 'attr': {'placeholder': 'Enter your message  here'} }) }}
+        {{ form_errors(feedback.message) }}
+    </div>
+
+    <button type="submit">
+        <span>send</span>
+    </button>
+
+{{ form_end(feedback) }}

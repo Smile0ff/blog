@@ -1,12 +1,12 @@
 {# src/AppBundle/Resources/views/home/index.html.twig #}
 {% extends 'AppBundle::base.html.twig' %}
 
+{% block title %}{{ pageTitle }}{% endblock %}
+
 {% block css %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('bundles/app/css/home.css') }}">
 {% endblock %}
-
-{% block title %}{{ pageTitle }}{% endblock %}
 
 {% block body %}
     <h1>{{ pageTitle }} page</h1>

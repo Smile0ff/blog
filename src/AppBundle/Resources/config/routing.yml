@@ -16,6 +16,13 @@ blog:
     requirements:
         _methods: GET
 
+blog_show:
+    path: /blog/{id}
+    defaults: { _controller: AppBundle:Blog:show }
+    requirements:
+        _methods: GET
+        id: \d+
+
 contact:
     path: /contact
     defaults: { _controller: AppBundle:Contact:index }

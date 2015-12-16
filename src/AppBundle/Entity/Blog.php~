@@ -54,18 +54,17 @@ class Blog
      */
     protected $updated;
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
 
     public function __construct(){
         $this->setCreated(new \DateTime());
         $this->setUpdated(new \DateTime());
         $this->comments = new ArrayCollection();
     }
-    
-    /**
-     * Get id
-     *
-     * @return integer
-     */
     public function getId()
     {
         return $this->id;

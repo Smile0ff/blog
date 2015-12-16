@@ -1,16 +1,34 @@
 {# src/AppBundle/Resources/views/blog/blog.html.twig #}
 {% extends 'AppBundle::base.html.twig' %}
 
+{% block title %}{{ pageTitle }}{% endblock %}
+
 {% block css %}
     {{ parent() }}
    
 {% endblock %}
 
-{% block title %}{{ pageTitle }}{% endblock %}
-
 {% block body %}
     <h1>{{ pageTitle }} page</h1>
+        
+    {% for post in posts %}
+            
+        <article>
+            <h2>{{ post.title }}</h2>
+            <time datetime="{{ post.created|date('c') }}">{{ post.created|date('d F Y') }}</time>
+            <figure>
+                <img src="{{ asset(['bundles/app/images/', post.image]|join) }}" alt="{{ post.title }}">
+            </figure>
+            <p>{{ post.author }}</p>
+            <p>{{ post.description }}</p>
+            <a href="{{ path('blog_show', {'id': post.id}) }}">подробнее</a>
+        </article>
 
-    
+    {% else %}
+        
+        <p>there is no posts</p>
+
+    {% endfor %}
+
 
 {% endblock %}

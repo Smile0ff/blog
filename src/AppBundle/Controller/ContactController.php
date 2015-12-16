@@ -21,6 +21,16 @@ class ContactController extends Controller
 
         if($form->isValid()){
 
+            $email = \Swift_Message::newInstance()
+                ->setSubject('Feedback from blog')
+                ->setFrom('feedback@blog.com')
+                ->setTo('a.parneta@gmail.com')
+                ->setBody($this->renderView('AppBundle:Email:feedback-email.html.twig', array('feedback' => $feedback)), 'text/html');
+
+            $this->get('mailer')->send($email);
+            $this->addFlash('feedback-notice', 'Feedback was successfully sent');
+
+            return $this->redirect($this->generateUrl('contact'));
         }
         else{
            

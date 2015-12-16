@@ -2,6 +2,12 @@
 
 {% form_theme feedback 'AppBundle:Forms:fields.html.twig' %}
 
+{% for flash_message in app.session.flashbag.get('feedback-notice') %}
+    <div class="flash-notice">
+        {{ flash_message }}
+    </div>
+{% endfor %}
+
 {{ form_start(feedback, { 'attr': {'action': path('contact'), 'novalidate': 'novalidate'} }) }}
     
     <div>

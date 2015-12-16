@@ -10,7 +10,14 @@ about:
     defaults: { _controller: AppBundle:About:index }
     methods: [GET]
 
+blog:
+    path: /blog
+    defaults: { _controller: AppBundle:Blog:index }
+    requirements:
+        _methods: GET
+
 contact:
     path: /contact
     defaults: { _controller: AppBundle:Contact:index }
-    methods: [GET, POST]
+    requirements:
+        _methods: GET|POST

@@ -38,7 +38,7 @@ class Feedback
             'message' => 'Should not be empty'
         ]));
         $metadata->addPropertyConstraint('email', new Assert\Email([
-            'message' => 'doesn\'t looks like correct email'
+            'message' => 'does not like a real email address'
         ]));
         $metadata->addPropertyConstraint('message', new Assert\NotBlank([
             'message' => 'Should not be empty'

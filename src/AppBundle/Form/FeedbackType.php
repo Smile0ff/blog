@@ -21,7 +21,12 @@ class FeedbackType extends AbstractType
     }
     public function configureOptions(OptionsResolver $resolver){
 
-        $resolver->setDefaults(['data_class' => 'AppBundle\Entity\Feedback']);
+        $resolver->setDefaults([
+            'data_class' => 'AppBundle\Entity\Feedback',
+            'csrf_protection' => true,
+            'csrf_field_name' => '_token',
+            'intention' => 'feedback_form'
+        ]);
     }
 }
 

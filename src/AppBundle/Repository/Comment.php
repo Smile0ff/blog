@@ -6,20 +6,21 @@ use Doctrine\ORM\EntityRepository;
 
 class Comment extends EntityRepository
 {
-    public function getCommentsForPost($postId, $approved = true){
+    public function findAllCommentsByPost($postId, $approved = true){
 
-        $qb = $this->createQueryBuilder('c')
-           ->select('c')
-           ->where('c.post = :post_id')
-           ->addOrderBy('c.created')
-           ->setParameter('post_id', $postId);
+        try {
+            
+            $em = $this->getEntityManager();
+            $dbh = $em->getConnection();
 
-        if (false === is_null($approved))
-            $qb->andWhere('c.approved = :approved')
-               ->setParameter('approved', $approved);
+            $stmt = $dbh->prepare('SELECT * FROM comment WHERE post_id = :post_id AND approved = :approved ORDER BY id ASC');
+            $stmt->execute(['post_id' => $postId, 'approved' => $approved]);
 
-        return $qb->getQuery()
-                  ->getResult();
+            return $stmt->fetchAll();
+
+        } catch(Exception $e){
+                throw new Exception("Error Processing Request");
+        }
 
     }
 }

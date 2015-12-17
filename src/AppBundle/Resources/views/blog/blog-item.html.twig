@@ -9,18 +9,34 @@
 {% endblock %}
 
 {% block body %}
+    <section>
 
-    <article>
-        <h1>{{ post.title }}</h1>
-        <time datetime="{{ post.created|date('c') }}">{{ post.created|date('d F y') }}</time>
-        <figure>
-           <img src="{{ asset(['bundles/app/images/', post.image]|join) }}" alt="{{ post.title }}">
-        </figure>
-        <p>{{ post.author }}</p>
-        <p>{{ post.text }}</p>
-        <a href="{{ path('blog') }}">к списку статей</a>
-    </article>
+        <article>
+            <h1>{{ post.title }}</h1>
+            <time datetime="{{ post.created|date('c') }}">{{ post.created|date('d F Y') }}</time>
+            <figure>
+               <img src="{{ asset('bundles/app/images/') }}{{ post.image }}" alt="{{ post.title }}">
+            </figure>
+            <p>{{ post.author }}</p>
+            <p>{{ post.text }}</p>
+            <a href="{{ path('blog') }}">к списку статей</a>
+        </article>
+        
+        <aside>
+            <h2>Комментарии</h2>
+            {% for comment in comments %}
+                
+                <article>
+                    <h3>{{ comment.user }}</h3>
+                    <time datetime="{{ comment.created|date('c') }}">{{ comment.created|date('d F Y') }}</time>
+                    <p>{{ comment.text }}</p>
+                </article>
 
-    {{ dump(comments) }}
+            {% else %}
+                <p>no comments</p>
+            {% endfor %}
+        </aside>
+
+    </section>
 
 {% endblock %}

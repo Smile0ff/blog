@@ -12,7 +12,7 @@ class BlogController extends Controller
         $pageTitle = "Blog";
 
         $repository = $this->getDoctrine()->getRepository('AppBundle:Blog');
-        $posts = $repository->findAllOrderedById();
+        $posts = $repository->findAllOrderedByDate();
 
         return $this->render('AppBundle:Blog:blog.html.twig', [
             "pageTitle" => $pageTitle,
@@ -21,13 +21,14 @@ class BlogController extends Controller
     }
     public function showAction($id){
 
-        $repository = $this->getDoctrine()->getRepository('AppBundle:Blog');
-        $post = $repository->find($id);
+        $blogRepo = $this->getDoctrine()->getRepository('AppBundle:Blog');
+        $post = $blogRepo->findOneById($id);
 
-        $comments = $this->getDoctrine()->getRepository('AppBundle:Comment')->getCommentsForPost($post->getId());
+        $commentRepo = $this->getDoctrine()->getRepository('AppBundle:Comment');
+        $comments = $commentRepo->findAllCommentsByPost($post->getId());
 
         if(!$post)
-            throw $this->createNotFoundException('No post found for id '.$id);
+            throw $this->createNotFoundException('Post not found');
 
         return $this->render('AppBundle:Blog:blog-item.html.twig', [
             "post" => $post,

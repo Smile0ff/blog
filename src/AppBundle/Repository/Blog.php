@@ -6,11 +6,23 @@ use Doctrine\ORM\EntityRepository;
 
 class Blog extends EntityRepository
 {
-    public function findAllOrderedById(){
 
-        return $this->getEntityManager()
-            ->createQuery('SELECT b FROM AppBundle:blog b ORDER BY b.id ASC')
-            ->getResult();
+    public function findAllOrderedByDate(){
+
+        try {
+            
+            $em = $this->getEntityManager();
+            $dbh = $em->getConnection();
+
+            $stmt = $dbh->query('SELECT * FROM blog ORDER BY created ASC');
+
+            return $stmt->fetchAll();
+               
+        } catch (Exception $e) {
+            throw new Exception("Error Processing Request", 1);
+            
+        }
 
     }
+
 }

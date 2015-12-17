@@ -204,4 +204,28 @@ class Comment
     {
         return $this->comment;
     }
+
+    /**
+     * Set post
+     *
+     * @param \AppBundle\Entity\Blog $post
+     *
+     * @return Comment
+     */
+    public function setPost(\AppBundle\Entity\Blog $post = null)
+    {
+        $this->post = $post;
+
+        return $this;
+    }
+
+    /**
+     * Get post
+     *
+     * @return \AppBundle\Entity\Blog
+     */
+    public function getPost()
+    {
+        return $this->post;
+    }
 }
